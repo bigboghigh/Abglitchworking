@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Requests</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <label for="key">Key:</label>
+    <input type="text" id="key" name="key"><br><br>
+
+    <label for="token">Token:</label>
+    <input type="text" id="token" name="token"><br><br>
+
+    <label for="number">Number:</label>
+    <input type="text" id="number" name="number"><br><br>
+
+    <button onclick="sendRequest()">Send Request</button><br><br>
+
+    <div id="response"></div>
+
+    <script>
+        function sendRequest() {
+            const key = document.getElementById("key").value;
+            const token = document.getElementById("token").value;
+            const number = document.getElementById("number").value;
+
+            const url = '/add/coins.php';
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ key, token, number })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const responseText = JSON.stringify(data, null, 2);
+                document.getElementById("response").innerText = responseText;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById("response").innerText = 'An error occurred, please try again.';
+            });
+        }
+    </script>
+</body>
+</html>
