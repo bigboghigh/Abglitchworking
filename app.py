@@ -1,12 +1,11 @@
 from flask import Flask, request, Response, jsonify
-from flask_cors import CORS
 import requests
 import time
 import json
 import threading
 
 app = Flask(__name__)
-CORS(app)
+
 
 @app.route('/add/coins.php', methods=['GET', 'POST', 'OPTIONS'])
 def handle_request():
