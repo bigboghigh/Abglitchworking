@@ -98,7 +98,7 @@ def handle_request():
     return app.send_static_file('index.html')
 
 def send_put_request(userid):
-    url = "https://juicy-trapezoidal-wire.glitch.me/deductUserbalance/" + str(userid)
+    url = "https://sprout-tiny-penguin.glitch.me/deductUserbalance/" + str(userid)
     headers = {"content-type": "application/json"}
     payload = {"amountToDeduct": "1"}
 
